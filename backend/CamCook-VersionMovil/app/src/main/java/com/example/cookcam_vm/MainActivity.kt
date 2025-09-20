@@ -135,17 +135,22 @@ class MainActivity : ComponentActivity() {
                                 onSuccess()
                             }
                             .addOnFailureListener { e ->
+                                // ⚠️ Captura error de permisos
                                 if (e.message?.contains("PERMISSION_DENIED") == true) {
-                                    Toast.makeText(this, "Por favor, vuelva a iniciar sesión.", Toast.LENGTH_LONG).show()
+                                    Toast.makeText(this, "Error de permisos. Por favor, vuelva a iniciar sesión.", Toast.LENGTH_LONG).show()
+                                    auth.signOut() // Forzamos logout
                                 } else {
                                     Toast.makeText(this, "Error al guardar datos: ${e.message}", Toast.LENGTH_SHORT).show()
                                 }
                                 onFinish()
                             }
+                    } ?: run {
+                        Toast.makeText(this, "Error: usuario no autenticado", Toast.LENGTH_SHORT).show()
+                        onFinish()
                     }
                 } else {
                     val errorMessage = task.exception?.message ?: "Error desconocido"
-                    if (errorMessage.contains("already in use")) {
+                    if (errorMessage.contains("already in use", true)) {
                         // Usuario ya existe, intentar login
                         loginUser(email, password, onSuccess, onFinish)
                     } else {
@@ -155,6 +160,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
     }
+
 
     private fun loginUser(
         email: String,
