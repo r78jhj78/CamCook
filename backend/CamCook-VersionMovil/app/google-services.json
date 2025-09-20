@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "271535276700",
+    "project_id": "cookcam-f3844",
+    "storage_bucket": "cookcam-f3844.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271535276700:android:713ad631e061146405e359",
+        "android_client_info": {
+          "package_name": "com.example.cookcam_vm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6xtiP1uJ1sU9OtKf6ZTGrJHZDGA3GnnA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
