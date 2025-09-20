@@ -97,7 +97,7 @@ class MainActivity : ComponentActivity() {
                         trimmedPassword,
                         onSuccess = {
                             navController.navigate("success") {
-                                popUpTo("login") { inclusive = true } // Elimina login del back stack
+                                popUpTo("login") { inclusive = true }
                             }
                         },
                         onFinish = {
@@ -126,7 +126,6 @@ class MainActivity : ComponentActivity() {
                     user?.let {
                         val userData = hashMapOf(
                             "email" to email,
-                            "password" to password, // ⚠️ Solo para pruebas
                             "role" to "usuario"
                         )
                         db.collection("users").document(it.uid)
@@ -136,15 +135,18 @@ class MainActivity : ComponentActivity() {
                                 onSuccess()
                             }
                             .addOnFailureListener { e ->
-                                Toast.makeText(this, "Error al guardar datos: ${e.message}", Toast.LENGTH_SHORT).show()
-                            }
-                            .addOnCompleteListener {
+                                if (e.message?.contains("PERMISSION_DENIED") == true) {
+                                    Toast.makeText(this, "Por favor, vuelva a iniciar sesión.", Toast.LENGTH_LONG).show()
+                                } else {
+                                    Toast.makeText(this, "Error al guardar datos: ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
                                 onFinish()
                             }
                     }
                 } else {
                     val errorMessage = task.exception?.message ?: "Error desconocido"
-                    if (errorMessage.contains("The email address is already in use")) {
+                    if (errorMessage.contains("already in use")) {
+                        // Usuario ya existe, intentar login
                         loginUser(email, password, onSuccess, onFinish)
                     } else {
                         Toast.makeText(this, "Error al registrar: $errorMessage", Toast.LENGTH_SHORT).show()

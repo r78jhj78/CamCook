@@ -12,7 +12,20 @@
           "package_name": "com.example.cookcam_vm"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "271535276700-j97bmo1bm73go4b0el6oj5n41md0bj4t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cookcam_vm",
+            "certificate_hash": "35be4ababd74ffce01385c0f6e62f0a19ff8b06e"
+          }
+        },
+        {
+          "client_id": "271535276700-4laqq05oln5go96dso4o2qje9qs2j06c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC6xtiP1uJ1sU9OtKf6ZTGrJHZDGA3GnnA"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "271535276700-4laqq05oln5go96dso4o2qje9qs2j06c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
